@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+
+  database:
+    image: mariadb:11.1.3-jammy
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: tarea
+      MYSQL_USER: saul
+      MYSQL_PASSWORD: password
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: saul
+      MYSQL_PASSWORD: password
+
